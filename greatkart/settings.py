@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
+import django_heroku
 from pathlib import Path
 from decouple import config
 
@@ -45,7 +46,9 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-  
+    'cloudinary_storage',
+   
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -131,11 +134,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+django_heroku.settings(locals())
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR /'static'
-STATICFILES_DIRS = [
-    'greatkart/static'
-]
+
 
 # media files configuration
 MEDIA_URL = '/media/'
@@ -154,3 +159,11 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'fahim1213456',
+    'API_KEY': '554889398149233',
+    'API_SECRET': 'xOh9Pctuw1UhBuRrj_XuP79ubbA'
+}
