@@ -1,4 +1,3 @@
-# greatcart
-Ecommerce website develop using Django
+# ecomercedjango
 
-![alt text](https://github.com/Shubhangam333/greatcart/blob/master/greatkart.png)
+https://djangoecomerce1.herokuapp.com/

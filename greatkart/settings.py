@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,22 +45,23 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-    'admin_honeypot',
+  
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+  'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware'
+      "whitenoise.middleware.WhiteNoiseMiddleware",
+     
 ]
 
 ROOT_URLCONF = 'greatkart.urls'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,7 +83,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'greatkart.wsgi.application'
 
 AUTH_USER_MODEL= 'accounts.Account'
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -143,7 +145,8 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
-
+ALLOWED_HOSTS=['*']
+CROS_ORIGIN_ALLOW_ALL = True
 
 # SMTP configuration
 EMAIL_HOST = config('EMAIL_HOST')
