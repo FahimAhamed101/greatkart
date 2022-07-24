@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True,cast=bool)
-
+#
 ALLOWED_HOSTS = ['djshop1.herokuapp.com']
 
 
@@ -152,7 +152,7 @@ MESSAGE_TAGS = {
 }
 ALLOWED_HOSTS=['*']
 CROS_ORIGIN_ALLOW_ALL = True
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # SMTP configuration
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
