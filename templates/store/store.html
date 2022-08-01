@@ -30,7 +30,7 @@
 				<h6 class="title">Categories</h6>
 			</a>
 		</header>
-		<div class="filter-content collapse show" id="collapse_1" style="">
+		<div class="filter-content collapse show" id="collapse_1" >
 			<div class="card-body">
 
 				<ul class="list-menu">
@@ -50,27 +50,22 @@
 				<h6 class="title">Sizes </h6>
 			</a>
 		</header>
-		<div class="filter-content collapse show" id="collapse_4" style="">
+		<div class="filter-content collapse show" id="collapse_4">
 			<div class="card-body">
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XS </span>
-			  </label>
+	
+			
+			   
+		
+				
+			   <form method="" action="{% url 'search' %}">
+			 	 {% for size in sizeoption %}
+			
+				
+				<button type="submit" value={{size.id}} name="size" class="btn btn-light">{{size}} </button>
+			 	{% endfor %}
+			
+			  </form>
 
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> SM </span>
-			  </label>
-
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> LG </span>
-			  </label>
-
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XXL </span>
-			  </label>
 		</div><!-- card-body.// -->
 		</div>
 	</article> <!-- filter-group .// -->
@@ -84,12 +79,15 @@
 		</header>
 		<div class="filter-content collapse show" id="collapse_3" style="">
 			<div class="card-body">
-
+				<form action="{% url 'store' %}" method="">
 				<div class="form-row">
 				<div class="form-group col-md-6">
 				  <label>Min</label>
 				  <!-- <input class="form-control" placeholder="$0" type="number"> -->
-				  	<select class="mr-2 form-control">
+				  	<select class="mr-2 form-control"   name="min_price">
+						{% if min_price %}
+						<option value={{min_price}}>${{min_price}}</option>
+						{% endif %}
 						<option value="0">$0</option>
 						<option value="50">$50</option>
 						<option value="100">$100</option>
@@ -101,7 +99,10 @@
 				</div>
 				<div class="form-group text-right col-md-6">
 				  <label>Max</label>
-				  	<select class="mr-2 form-control">
+				  	<select class="mr-2 form-control" value=""  name="max_price">
+						{% if max_price %}
+						<option value={{max_price}}>${{max_price}}</option>
+						{% endif %}
 						<option value="50">$50</option>
 						<option value="100">$100</option>
 						<option value="150">$150</option>
@@ -112,7 +113,8 @@
 					</select>
 				</div>
 				</div> <!-- form-row.// -->
-				<button class="btn btn-block btn-primary">Apply</button>
+				<button type="submit" class="btn btn-block btn-primary">Apply</button>
+				</form>
 			</div><!-- card-body.// -->
 		</div>
 	</article> <!-- filter-group .// -->

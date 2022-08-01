@@ -27,8 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True,cast=bool)
-#
-ALLOWED_HOSTS = ['djshop1.herokuapp.com']
+#'djshop1.herokuapp.com'
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -137,14 +137,17 @@ USE_TZ = True
 django_heroku.settings(locals())
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
 
+]
 
 # media files configuration
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+#MEDIA_ROOT = BASE_DIR /'media'
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {

@@ -17,7 +17,7 @@ class Product(models.Model):
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date    = models.DateTimeField(auto_now_add=True)
     modified_date   = models.DateTimeField(auto_now=True)
-
+   
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 
@@ -50,13 +50,25 @@ variation_category_choice = (
     ('size', 'size'),
 )
 
+
+class SizeOption(models.Model):
+    size_choices = (
+        ('XL', 'XL'),
+        ('SM', 'SM'),
+        ('LG', 'LG'),
+        ('XXL', 'XXL'),
+     
+    )
+    sizeoption=models.CharField(choices=size_choices,max_length=55,null=True)
+    def __str__(self):
+       return self.sizeoption
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation_category = models.CharField(max_length=100, choices=variation_category_choice)
     variation_value     = models.CharField(max_length=100)
     is_active           = models.BooleanField(default=True)
     created_date        = models.DateTimeField(auto_now=True)
-
+    sizeoption = models.ForeignKey(SizeOption,on_delete=models.CASCADE,null=True)
     objects = VariationManager()
 
     def __str__(self):
