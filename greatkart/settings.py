@@ -56,7 +56,7 @@ INSTALLED_APPS = [
    
     'cloudinary',"django_extensions",
 ]
-SITE_ID =3
+SITE_ID =2
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_USERNAME_REQURIED=True
 LOGIN_REDIRECT_URL = "/"
