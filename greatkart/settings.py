@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+from tkinter import OFF
 import django_heroku
 from pathlib import Path
 from decouple import config
@@ -27,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True,cast=bool)
-#
+
 ALLOWED_HOSTS = ['djshop1.herokuapp.com']
 
 
@@ -46,11 +47,20 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+  'django.contrib.sites',
+   'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+'allauth.socialaccount.providers.facebook',
     'cloudinary_storage',
    
-    'cloudinary',
+    'cloudinary',"django_extensions",
 ]
-
+SITE_ID =3
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_USERNAME_REQURIED=True
+LOGIN_REDIRECT_URL = "/"
 MIDDLEWARE = [
   'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,6 +72,50 @@ MIDDLEWARE = [
       "whitenoise.middleware.WhiteNoiseMiddleware",
      
 ]
+SOCIALACCOUNT_LOGIN_ON_GET =True
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
+AUTHENTICATION_BACKENDS = (
+  'allauth.account.auth_backends.AuthenticationBackend',
+  'django.contrib.auth.backends.ModelBackend',
+)
+OCIALACCOUNT_PROVIDERS = {
+   
+    "google": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+       
+        "VERIFIED_EMAIL": True,
+        # These are provider-specific settings that can only be
+        # listed here:
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+    'facebook':
+{'METHOD': 'oauth2',
+'SCOPE': ['email','public_profile', 'user_friends'],
+'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+'FIELDS': [
+'id',
+'email',
+'name',
+'first_name',
+'last_name',
+'verified',
+'locale',
+'timezone',
+'link',
+'gender',
+'updated_time'],
+'EXCHANGE_TOKEN': True,
+'LOCALE_FUNC': lambda request: 'kr_KR',
+'VERIFIED_EMAIL': False,
+'VERSION': 'v2.4'}}
 
 ROOT_URLCONF = 'greatkart.urls'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -138,6 +192,9 @@ django_heroku.settings(locals())
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS = [BASE_DIR / "static",]
+    
+ 
 
 STATIC_URL = '/static/'
 
