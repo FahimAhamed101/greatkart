@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'carts',
     'orders',
   'django.contrib.sites',
-   'allauth',
+
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
