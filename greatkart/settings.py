@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-    'sslserver',
+    
   'django.contrib.sites',
 
     'allauth.account',
