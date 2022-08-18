@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 'allauth.socialaccount.providers.facebook',
     'cloudinary_storage',
    
-    'cloudinary',"django_extensions",
+    'cloudinary',
 ]
 SITE_ID =3
 ACCOUNT_EMAIL_REQUIRED=True
@@ -74,7 +74,7 @@ MIDDLEWARE = [
 ]
 SOCIALACCOUNT_LOGIN_ON_GET =True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
-
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 AUTHENTICATION_BACKENDS = [
     
     # Needed to login by username in Django admin, regardless of `allauth`
