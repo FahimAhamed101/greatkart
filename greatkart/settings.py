@@ -75,6 +75,7 @@ MIDDLEWARE = [
 SOCIALACCOUNT_LOGIN_ON_GET =True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 AUTHENTICATION_BACKENDS = [
     
     # Needed to login by username in Django admin, regardless of `allauth`
