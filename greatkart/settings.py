@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    'sslserver',
   'django.contrib.sites',
 
     'allauth.account',
@@ -73,10 +74,16 @@ MIDDLEWARE = [
 ]
 SOCIALACCOUNT_LOGIN_ON_GET =True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
-AUTHENTICATION_BACKENDS = (
-  'allauth.account.auth_backends.AuthenticationBackend',
-  'django.contrib.auth.backends.ModelBackend',
-)
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
 OCIALACCOUNT_PROVIDERS = {
    
     "google": {
@@ -84,7 +91,7 @@ OCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
        
-        "VERIFIED_EMAIL": True,
+     
         # These are provider-specific settings that can only be
         # listed here:
         "SCOPE": [
@@ -193,7 +200,7 @@ django_heroku.settings(locals())
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATICFILES_DIRS = [BASE_DIR / "static",]
     
- 
+
 
 STATIC_URL = '/static/'
 
